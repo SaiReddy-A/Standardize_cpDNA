@@ -56,7 +56,7 @@ if [ $(grep -c "^" _tmp.blast.out) -gt 2 ];then
     cat iras irae > IRa.fa 
 
       # double checking the IR alignments 
-      if [ $(blastn -query IRa.fa -subject IRb.fa -perc_identity 99 -evalue 0.00001 -outfmt '6 qseqid qstart qend sseqid sstart send length pident' |awk 'NR==1&&$2==$6&&$3==$5 {print "Success"}') == Success ] ;then 
+      if [ $(blastn -query IRa.fa -subject IRb.fa -perc_identity 99 -evalue 0.00001 -outfmt '6 qseqid qstart qend sseqid sstart send length pident' |awk 'NR==1&&$2==$6&&$3==$5 {print "Success"}') == "Success" ] ;then 
         samtools faidx ${fasta} "$lsc" |sed 1d > LSC.fa 
         samtools faidx ${fasta} "$ssc" |sed 1d > SSC.fa 
         cat IRa.fa | sed 1d > _tmp.IRa.fa 
